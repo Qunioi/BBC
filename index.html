@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/image/favicon.png">
+  <link rel="icon" type="image/svg+xml" href="/image/favicon.svg">
+  <link rel="apple-touch-icon" href="/image/favicon.png">
   <title>BBC 币币兑换 特色 | BBC Features</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,6 +15,7 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <div class="topbar"></div>
   <div class="page-wrap">
     <header class="header">
       <div class="logo">
@@ -27,7 +31,7 @@
               <div class="slide-txt">
                 <h2 class="slide-title">为什么您需要<span>BBC</span>?</h2>
                 <p class="slide-desc">多个钱包切来切去，余额查不清？<br>不同钱包转来转去，花费很多时间？</p>
-                <a href="#" class="slide-btn"><div class="icon icon-play"></div><span>BBC 的一键解决方法</span></a>
+                <a href="#" class="slide-btn"><div class="icon icon-play"><i></i></div><span>BBC 的一键解决方法</span></a>
               </div>
               <div class="slide-bg-wrap">
                 <div class="slide-img" style="background-image: url(/image/slider_img01.png);"></div>
@@ -42,7 +46,7 @@
               <div class="slide-txt">
                 <h2 class="slide-title">轻松完成您的<br class="br">第一笔转帐</h2>
                 <p class="slide-desc">新手也能秒懂的简易流程<br>跟着短片操作，体验极速服务</p>
-                <a href="#" class="slide-btn"><div class="icon icon-play"></div><span>立即查看转账实况</span></a>
+                <a href="#" class="slide-btn"><div class="icon icon-play"><i></i></div><span>立即查看转账实况</span></a>
               </div>
               <div class="slide-bg-wrap">
                 <div class="slide-img" style="background-image: url(/image/slider_img02.png);"></div>
@@ -57,7 +61,7 @@
               <div class="slide-txt">
                 <h2 class="slide-title">多钱包整合<br class="br">一键快速转账</h2>
                 <p class="slide-desc">多钱包即时余额整合 All IN ONE<br>全面解决跨钱包转账繁琐的问题</p>
-                <a href="https://www.bbchange.com/" target="_blank" class="slide-btn"><div class="icon icon-link"></div><span>立即体验</span></a>
+                <a href="https://www.bbchange.com/" target="_blank" class="slide-btn"><div class="icon icon-link"><i></i></div><span>立即体验</span></a>
               </div>
               <div class="slide-bg-wrap">
                 <div class="slide-img" style="background-image: url(/image/slider_img03.png);"></div>
@@ -79,30 +83,88 @@
     <h2>请将设备转为竖屏</h2>
     <p>为了获得最佳浏览体验<br>请使用竖屏模式查看此页面</p>
   </div>
-  <script>
-    // 移除螢幕鎖定代碼
-  </script>
+
   <script type="module">
     import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.mjs'
 
     let swiper;
-    function initSwiper() {
-      if (swiper) {
-        swiper.destroy(true, true);
+
+    const gradientColors = [
+      {
+        color1: 'rgb(67, 182, 117)',
+        color2: 'rgb(190, 238, 143)',
+        color3: 'rgb(248, 176, 55)',
+        bgColor: '245 178 58'
+      },
+      {
+        color1: 'rgb(248, 176, 55)',
+        color2: 'rgb(190, 238, 143)',
+        color3: 'rgb(65, 180, 115)',
+        bgColor: '80 187 119'
+      },
+      {
+        color1: 'rgb(67, 180, 116)',
+        color2: 'rgb(143, 238, 194)',
+        color3: 'rgb(66, 127, 217)',
+        bgColor: '80 147 213'
       }
-      const isTablet = window.innerWidth >= 768;
-      swiper = new Swiper('.swiper', {
-        direction: isTablet ? 'vertical' : 'horizontal',
-        loop: true,
-        speed: 600,
-        effect: 'slide',
-        slidesPerView: 1,
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-        }
-      });
+    ];
+    function updateColor(index) {
+      const colors = gradientColors[index];
+      const topbar = document.querySelector('.topbar');
+      const html = document.documentElement;
+
+      if (topbar) {
+        topbar.style.setProperty('--gradient-color-1', colors.color1);
+        topbar.style.setProperty('--gradient-color-2', colors.color2);
+        topbar.style.setProperty('--gradient-color-3', colors.color3);
+      }
+
+      if (html) {
+        html.style.setProperty('--bg-color', colors.bgColor);
+      }
     }
+
+    function initSwiper() {
+  if (swiper) {
+    swiper.destroy(true, true);
+  }
+  const isTablet = window.innerWidth >= 768;
+  swiper = new Swiper('.swiper', {
+    direction: isTablet ? 'vertical' : 'horizontal',
+    loop: true,
+    speed: 600,
+    effect: 'slide',
+    slidesPerView: 1,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    mousewheel: {
+      enabled: true,
+      forceToAxis: true,
+      sensitivity: 1,
+      releaseOnEdges: true,
+    },
+    on: {
+      slideChange: function() {
+        const realIndex = this.realIndex;
+        updateColor(realIndex);
+
+        // 重置並重新觸發動畫
+        const activeSlide = this.slides[this.activeIndex];
+        const elements = activeSlide.querySelectorAll('.slide-title, .slide-desc, .slide-btn, .slide-img, .slide-bg-img');
+
+        elements.forEach(el => {
+          el.style.animation = 'none';
+          el.offsetHeight; // 觸發 reflow
+          el.style.animation = null;
+        });
+      }
+    }
+  });
+  updateColor(0);
+}
 
     initSwiper();
     let resizeTimer;
