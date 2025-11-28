@@ -3,177 +3,416 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="/image/favicon.png">
-  <link rel="icon" type="image/svg+xml" href="/image/favicon.svg">
-  <link rel="apple-touch-icon" href="/image/favicon.png">
-  <title>BBC 币币兑换 特色 | BBC Features</title>
+  <link rel="icon" type="image/x-icon" href="./image/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="./image/favicon.svg">
+  <link rel="apple-touch-icon" href="./image/favicon.svg">
+  <title>BBC 币币兑换 特色</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css">
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/style.css">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NZS3TGFJ');</script>
+  <!-- End Google Tag Manager -->
 </head>
 <body>
-  <div class="topbar"></div>
-  <div class="page-wrap">
-    <header class="header">
-      <div class="logo">
-        <img src="/image/logo.png" class="logo-img" alt="BBC 币币兑换 特色">
-        <h1>BBC 币币兑换 特色</h1>
-      </div>
-    </header>
-    <main class="main">
-      <div class="swiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide swiper-slide01">
-            <div class="slide-content">
-              <div class="slide-txt">
-                <h2 class="slide-title">为什么您需要<span>BBC</span>?</h2>
-                <p class="slide-desc">多个钱包切来切去，余额查不清？<br>不同钱包转来转去，花费很多时间？</p>
-                <a href="#" class="slide-btn"><div class="icon icon-play"><i></i></div><span>BBC 的一键解决方法</span></a>
-              </div>
-              <div class="slide-bg-wrap">
-                <div class="slide-img" style="background-image: url(/image/slider_img01.png);"></div>
-                <div class="slide-bg-color">
-                  <div class="slide-bg-img" style="background-image: url(/image/slider_bg01.png);"></div>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZS3TGFJ"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- Page Loader -->
+  <div id="page-loader">
+    <div class="loader-spinner-bg">
+      <div class="loader-spinner"></div>
+    </div>
+  </div>
+  
+  <div id="app">
+    <div class="topbar" :style="topbarStyle"></div>
+    <div class="page-wrap">
+      <header class="header">
+        <div class="logo">
+          <img src="./image/logo.png" class="logo-img" alt="BBC 币币兑换 特色">
+          <h1>BBC 币币兑换 特色</h1>
+        </div>
+      </header>
+      <main class="main">
+        <div class="swiper">
+          <div class="swiper-wrapper">
+            <div v-for="(slide, index) in slides" :key="index" :class="['swiper-slide', `swiper-slide0${index + 1}`]">
+              <div class="slide-content">
+                <div class="slide-txt">
+                  <h2 class="slide-title" v-html="slide.title"></h2>
+                  <p class="slide-desc" v-html="slide.desc"></p>
+                  <a 
+                    :href="slide.btnLink || '#'" 
+                    :class="['slide-btn', slide.btnClass]" 
+                    :id="slide.btnId"
+                    @click="handleButtonClick($event, slide)"
+                  >
+                    <div :class="['icon', slide.iconClass]"><i></i></div>
+                    <span>{{ slide.btnText }}</span>
+                  </a>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide swiper-slide02">
-            <div class="slide-content">
-              <div class="slide-txt">
-                <h2 class="slide-title">轻松完成您的<br class="br">第一笔转帐</h2>
-                <p class="slide-desc">新手也能秒懂的简易流程<br>跟着短片操作，体验极速服务</p>
-                <a href="#" class="slide-btn"><div class="icon icon-play"><i></i></div><span>立即查看转账实况</span></a>
-              </div>
-              <div class="slide-bg-wrap">
-                <div class="slide-img" style="background-image: url(/image/slider_img02.png);"></div>
-                <div class="slide-bg-color" style="--card-bg-top: rgb(67 181 117 / 10%); --card-bg-bottom: #43b675;">
-                  <div class="slide-bg-img" style="background-image: url(/image/slider_bg02.png);"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide swiper-slide03">
-            <div class="slide-content">
-              <div class="slide-txt">
-                <h2 class="slide-title">多钱包整合<br class="br">一键快速转账</h2>
-                <p class="slide-desc">多钱包即时余额整合 All IN ONE<br>全面解决跨钱包转账繁琐的问题</p>
-                <a href="https://www.bbchange.com/" target="_blank" class="slide-btn"><div class="icon icon-link"><i></i></div><span>立即体验</span></a>
-              </div>
-              <div class="slide-bg-wrap">
-                <div class="slide-img" style="background-image: url(/image/slider_img03.png);"></div>
-                <div class="slide-bg-color" style="--card-bg-top: rgb(147 217 250 / 10%); --card-bg-bottom: #3979de;">
+                <div class="slide-bg-wrap">
+                  <div class="slide-img" :style="{ backgroundImage: `url(${slide.img})` }"></div>
+                  <div class="slide-bg-color" :style="slide.bgStyle">
+                    <div v-if="slide.bgImg" class="slide-bg-img" :style="{ backgroundImage: `url(${slide.bgImg})` }"></div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <div class="swiper-pagination"></div>
+      </main>
+    </div>
+    <div class="orientation-message">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="4" y="2" width="16" height="20" rx="2" ry="2"/>
+        <line x1="12" y1="18" x2="12" y2="18"/>
+      </svg>
+      <h2>请将设备转为竖屏</h2>
+      <p>为了获得最佳浏览体验<br>请使用竖屏模式查看此页面</p>
+    </div>
+
+    <!-- Video Modal -->
+    <div class="video-modal" :class="{ active: isVideoModalActive }" @click="handleModalBackdropClick">
+      <div class="video-modal-content">
+        <button 
+          :id="closeButtonId" 
+          class="video-modal-close" 
+          aria-label="關閉影片"
+          @click="closeVideoModal"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+        <video ref="videoPlayer" class="video-player" controls playsinline></video>
       </div>
-      <div class="swiper-pagination"></div>
-    </main>
-  </div>
-  <div class="orientation-message">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <rect x="4" y="2" width="16" height="20" rx="2" ry="2"/>
-      <line x1="12" y1="18" x2="12" y2="18"/>
-    </svg>
-    <h2>请将设备转为竖屏</h2>
-    <p>为了获得最佳浏览体验<br>请使用竖屏模式查看此页面</p>
+    </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script type="importmap">
+    {
+      "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js"
+      }
+    }
+  </script>
   <script type="module">
+    import { createApp, ref, reactive, computed, onMounted, onUnmounted, watch, nextTick } from 'vue'
     import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.mjs'
 
-    let swiper;
+    createApp({
+      setup() {
+        // Swiper instance
+        let swiperInstance = null
+        let hlsInstance = null
+        let resizeTimer = null
 
-    const gradientColors = [
-      {
-        color1: 'rgb(67, 182, 117)',
-        color2: 'rgb(190, 238, 143)',
-        color3: 'rgb(248, 176, 55)',
-        bgColor: '245 178 58'
-      },
-      {
-        color1: 'rgb(248, 176, 55)',
-        color2: 'rgb(190, 238, 143)',
-        color3: 'rgb(65, 180, 115)',
-        bgColor: '80 187 119'
-      },
-      {
-        color1: 'rgb(67, 180, 116)',
-        color2: 'rgb(143, 238, 194)',
-        color3: 'rgb(66, 127, 217)',
-        bgColor: '80 147 213'
+        // Reactive state
+        const currentSlideIndex = ref(0)
+        const isVideoModalActive = ref(false)
+        const closeButtonId = ref('video-modal-close')
+        const videoPlayer = ref(null)
+
+        // Gradient colors configuration
+        const gradientColors = [
+          {
+            color1: 'rgb(67, 182, 117)',
+            color2: 'rgb(190, 238, 143)',
+            color3: 'rgb(248, 176, 55)',
+            bgColor: '245 178 58'
+          },
+          {
+            color1: 'rgb(248, 176, 55)',
+            color2: 'rgb(190, 238, 143)',
+            color3: 'rgb(65, 180, 115)',
+            bgColor: '80 187 119'
+          },
+          {
+            color1: 'rgb(67, 180, 116)',
+            color2: 'rgb(143, 238, 194)',
+            color3: 'rgb(66, 127, 217)',
+            bgColor: '80 147 213'
+          }
+        ]
+
+        // Slides data
+        const slides = reactive([
+          {
+            title: '整合多钱包 <br class="br">交易不烦恼',
+            desc: '多钱包余额完整呈现<br>支援跨钱包一键交易',
+            btnText: '特色短影音',
+            btnClass: 'btn--play',
+            btnId: 'btn-open--features',
+            iconClass: 'icon--play',
+            videoSrc: './video/features.m3u8',
+            img: './image/slider_img01.png',
+            bgImg: './image/slider_bg01.png',
+            bgStyle: {}
+          },
+          {
+            title: '轻松完成您的<br class="br">第一笔转帐',
+            desc: '新手也能秒懂的简易流程<br>跟着短片操作，体验极速服务',
+            btnText: '立即查看转账实况',
+            btnClass: '',
+            btnId: 'btn-open--teaching',
+            iconClass: 'icon--play',
+            videoSrc: './video/teaching.m3u8',
+            img: './image/slider_img02.png',
+            bgImg: './image/slider_bg02.png',
+            bgStyle: {
+              '--card-bg-top': 'rgb(67 181 117 / 10%)',
+              '--card-bg-bottom': '#43b675'
+            }
+          },
+          {
+            title: '多钱包整合<br class="br">一键快速转账',
+            desc: '多钱包即时余额整合 All IN ONE<br>全面解决跨钱包转账繁琐的问题',
+            btnText: '立即体验',
+            btnClass: 'btn--link',
+            btnId: 'btn-open--link',
+            btnLink: 'https://bbc666.vip/bb1marketing',
+            iconClass: 'icon--link',
+            img: './image/slider_img03.png',
+            bgStyle: {
+              '--card-bg-top': 'rgb(147 217 250 / 10%)',
+              '--card-bg-bottom': '#3979de'
+            }
+          }
+        ])
+
+        // Computed topbar style
+        const topbarStyle = computed(() => {
+          const colors = gradientColors[currentSlideIndex.value]
+          return {
+            '--gradient-color-1': colors.color1,
+            '--gradient-color-2': colors.color2,
+            '--gradient-color-3': colors.color3
+          }
+        })
+
+        // Update background color
+        const updateBgColor = (index) => {
+          const colors = gradientColors[index]
+          document.documentElement.style.setProperty('--bg-color', colors.bgColor)
+        }
+
+        // Initialize Swiper
+        const initSwiper = () => {
+          if (swiperInstance) {
+            swiperInstance.destroy(true, true)
+          }
+
+          const isTablet = window.innerWidth >= 576
+          swiperInstance = new Swiper('.swiper', {
+            direction: isTablet ? 'vertical' : 'horizontal',
+            loop: true,
+            speed: 800,
+            effect: 'slide',
+            slidesPerView: 1,
+            autoplay: {
+              delay: 10000,
+              disableOnInteraction: false,
+            },
+            pagination: {
+              el: '.swiper-pagination',
+              clickable: true,
+            },
+            mousewheel: {
+              enabled: true,
+              forceToAxis: true,
+              sensitivity: 1,
+              releaseOnEdges: true,
+            },
+            on: {
+              slideChange: function() {
+                const realIndex = this.realIndex
+                currentSlideIndex.value = realIndex
+                updateBgColor(realIndex)
+
+                // Reset and retrigger animations
+                const activeSlide = this.slides[this.activeIndex]
+                const elements = activeSlide.querySelectorAll('.slide-title, .slide-desc, .slide-btn, .slide-img, .slide-bg-img')
+
+                elements.forEach(el => {
+                  el.style.animation = 'none'
+                  el.offsetHeight // Trigger reflow
+                  el.style.animation = null
+                })
+              }
+            }
+          })
+          
+          updateBgColor(0)
+        }
+
+        // Handle window resize
+        const handleResize = () => {
+          clearTimeout(resizeTimer)
+          resizeTimer = setTimeout(() => {
+            initSwiper()
+          }, 250)
+        }
+
+        // Handle button click
+        const handleButtonClick = (event, slide) => {
+          if (slide.videoSrc) {
+            event.preventDefault()
+            openVideoModal(slide.videoSrc)
+          }
+        }
+
+        // Open video modal
+        const openVideoModal = (src) => {
+          isVideoModalActive.value = true
+          document.body.style.overflow = 'hidden'
+          
+          // Stop Swiper autoplay
+          if (swiperInstance && swiperInstance.autoplay) {
+            swiperInstance.autoplay.stop()
+          }
+
+          // Set close button ID based on video source
+          if (src.includes('features.m3u8')) {
+            closeButtonId.value = 'btn-close--features'
+          } else if (src.includes('teaching.m3u8')) {
+            closeButtonId.value = 'btn-close--teaching'
+          }
+
+          // Load and play HLS video
+          nextTick(() => {
+            if (window.Hls && window.Hls.isSupported()) {
+              if (hlsInstance) {
+                hlsInstance.destroy()
+              }
+              hlsInstance = new window.Hls({
+                enableWorker: true,
+                lowLatencyMode: true,
+              })
+              hlsInstance.loadSource(src)
+              hlsInstance.attachMedia(videoPlayer.value)
+              hlsInstance.on(window.Hls.Events.MANIFEST_PARSED, () => {
+                videoPlayer.value.play()
+              })
+            } else if (videoPlayer.value.canPlayType('application/vnd.apple.mpegurl')) {
+              // Native HLS support (Safari)
+              videoPlayer.value.src = src
+              videoPlayer.value.addEventListener('loadedmetadata', () => {
+                videoPlayer.value.play()
+              })
+            }
+          })
+        }
+
+        // Close video modal
+        const closeVideoModal = () => {
+          // --- 手動推送 GTM 資料 ---
+          let videoName = '';
+          if (closeButtonId.value === 'btn-close-features') videoName = '特色短影音';
+          else if (closeButtonId.value === 'btn-close-teaching') videoName = '查看轉帳實況';
+          
+          if (videoName) {
+            if (window.dataLayer) {
+              const closeBtn = document.getElementById(closeButtonId.value);
+              if(closeBtn) {
+              }
+            }
+          }
+          isVideoModalActive.value = false
+          document.body.style.overflow = ''
+
+          // Resume Swiper autoplay
+          if (swiperInstance && swiperInstance.autoplay) {
+            swiperInstance.autoplay.start()
+          }
+
+          // Stop and cleanup video
+          if (videoPlayer.value) {
+            videoPlayer.value.pause()
+            videoPlayer.value.currentTime = 0
+          }
+
+          if (hlsInstance) {
+            hlsInstance.destroy()
+            hlsInstance = null
+          }
+
+          if (videoPlayer.value) {
+            videoPlayer.value.src = ''
+          }
+        }
+
+        // Handle modal backdrop click
+        const handleModalBackdropClick = (e) => {
+          if (e.target.classList.contains('video-modal')) {
+            closeVideoModal()
+          }
+        }
+
+        // Handle keyboard events
+        const handleKeydown = (e) => {
+          if (e.key === 'Escape' && isVideoModalActive.value) {
+            closeVideoModal()
+          }
+        }
+
+        // Lifecycle hooks
+        onMounted(() => {
+          // Ensure video modal is closed on page load
+          isVideoModalActive.value = false
+          document.body.style.overflow = ''
+          
+          initSwiper()
+          
+          // Hide loader after a short delay to ensure styles are applied
+          setTimeout(() => {
+            const loader = document.getElementById('page-loader')
+            if (loader) {
+              loader.classList.add('hidden')
+            }
+          }, 500)
+
+          window.addEventListener('resize', handleResize)
+          document.addEventListener('keydown', handleKeydown)
+        })
+
+        onUnmounted(() => {
+          if (swiperInstance) {
+            swiperInstance.destroy(true, true)
+          }
+          if (hlsInstance) {
+            hlsInstance.destroy()
+          }
+          window.removeEventListener('resize', handleResize)
+          document.removeEventListener('keydown', handleKeydown)
+          clearTimeout(resizeTimer)
+        })
+
+        return {
+          slides,
+          topbarStyle,
+          isVideoModalActive,
+          closeButtonId,
+          videoPlayer,
+          handleButtonClick,
+          closeVideoModal,
+          handleModalBackdropClick
+        }
       }
-    ];
-    function updateColor(index) {
-      const colors = gradientColors[index];
-      const topbar = document.querySelector('.topbar');
-      const html = document.documentElement;
-
-      if (topbar) {
-        topbar.style.setProperty('--gradient-color-1', colors.color1);
-        topbar.style.setProperty('--gradient-color-2', colors.color2);
-        topbar.style.setProperty('--gradient-color-3', colors.color3);
-      }
-
-      if (html) {
-        html.style.setProperty('--bg-color', colors.bgColor);
-      }
-    }
-
-    function initSwiper() {
-  if (swiper) {
-    swiper.destroy(true, true);
-  }
-  const isTablet = window.innerWidth >= 768;
-  swiper = new Swiper('.swiper', {
-    direction: isTablet ? 'vertical' : 'horizontal',
-    loop: true,
-    speed: 600,
-    effect: 'slide',
-    slidesPerView: 1,
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-    mousewheel: {
-      enabled: true,
-      forceToAxis: true,
-      sensitivity: 1,
-      releaseOnEdges: true,
-    },
-    on: {
-      slideChange: function() {
-        const realIndex = this.realIndex;
-        updateColor(realIndex);
-
-        // 重置並重新觸發動畫
-        const activeSlide = this.slides[this.activeIndex];
-        const elements = activeSlide.querySelectorAll('.slide-title, .slide-desc, .slide-btn, .slide-img, .slide-bg-img');
-
-        elements.forEach(el => {
-          el.style.animation = 'none';
-          el.offsetHeight; // 觸發 reflow
-          el.style.animation = null;
-        });
-      }
-    }
-  });
-  updateColor(0);
-}
-
-    initSwiper();
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        initSwiper();
-      }, 250);
-    });
+    }).mount('#app')
   </script>
 </body>
 </html>
